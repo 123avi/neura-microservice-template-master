@@ -1,4 +1,4 @@
-package com.example
+package  $package$
 
 //#quick-start-server
 import scala.concurrent.{ Await, ExecutionContext, Future }
@@ -9,6 +9,8 @@ import akka.actor.{ ActorRef, ActorSystem }
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Route
 import akka.stream.ActorMaterializer
+
+import  $package$.service
 
 //#main-class
 object QuickstartServer extends App with UserRoutes {

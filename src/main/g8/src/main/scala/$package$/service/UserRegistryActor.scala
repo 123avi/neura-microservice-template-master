@@ -1,4 +1,4 @@
-package com.example
+package  $package$
 
 //#user-registry-actor
 import akka.actor.{ Actor, ActorLogging, Props }

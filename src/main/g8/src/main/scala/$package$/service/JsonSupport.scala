@@ -1,6 +1,6 @@
-package com.example
+package  $package$
 
-import com.example.UserRegistryActor.ActionPerformed
+import  $package$.UserRegistryActor.ActionPerformed
 
 //#json-support
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
