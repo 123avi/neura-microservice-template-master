@@ -1,4 +1,4 @@
-package com.example
+package $package$.service
 
 //#user-routes-spec
 //#test-top
