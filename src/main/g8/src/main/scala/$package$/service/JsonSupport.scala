@@ -1,5 +1,4 @@
-package  $package$
-
+package  $package$.service
 import  $package$.UserRegistryActor.ActionPerformed
 
 //#json-support
