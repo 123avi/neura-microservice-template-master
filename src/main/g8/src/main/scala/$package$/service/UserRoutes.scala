@@ -1,4 +1,4 @@
-package  $package$
+package  $package$.service
 
 import akka.actor.{ ActorRef, ActorSystem }
 import akka.event.Logging
