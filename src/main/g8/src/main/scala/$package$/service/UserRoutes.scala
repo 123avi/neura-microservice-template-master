@@ -14,7 +14,7 @@ import akka.http.scaladsl.server.directives.RouteDirectives.complete
 import akka.http.scaladsl.server.directives.PathDirectives.path
 
 import scala.concurrent.Future
-import com.example.UserRegistryActor._
+import $package$.service.UserRegistryActor._
 import akka.pattern.ask
 import akka.util.Timeout
 

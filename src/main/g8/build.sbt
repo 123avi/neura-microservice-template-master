@@ -2,6 +2,13 @@ enablePlugins(GitVersioning)
 enablePlugins(GitBranchPrompt)
 enablePlugins(BuildInfoPlugin)
 
+val commonsInfraVersion = "1.2.3"
+val logbackVersion = "1.2.3"
+val scalaLogging = "3.7.1"
+val akkaSlf4jVersion = "2.5.23"
+val akkaHttpVersion = "10.1.8"
+val akkaVersion = "2.5.23"
+
 lazy val root = (project in file(".")).
   settings(
     inThisBuild(List(
@@ -19,16 +26,22 @@ lazy val root = (project in file(".")).
   )
 
 lazy val compileDependencies = {
-  val macVersion = "2.3.1"
-  val prometheusVersion = "0.4.0"
-
   Seq(
-    "com.typesafe.scala-logging" %% "scala-logging"% "3.7.1",
-    "ch.qos.logback" % "logback-classic" % "1.2.3",
-    "com.typesafe.akka" %% "akka-slf4j" % "2.5.12",
-    "com.typesafe.akka" %% "akka-http" % "10.1.3",
-    "com.typesafe.akka" %% "akka-actor" % "2.5.8",
-    "com.typesafe.akka" %% "akka-stream" % "2.5.8"
+
+    "com.typesafe.scala-logging" %% "scala-logging"% scalaLogging,
+    "ch.qos.logback" % "logback-classic" % logbackVersion,
+    "com.typesafe.akka" %% "akka-slf4j" % akkaSlf4jVersion,
+    "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
+    "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
+    "com.typesafe.akka" %% "akka-http-xml"        % akkaHttpVersion,
+    "com.typesafe.akka" %% "akka-stream"          % akkaVersion,
+    "com.typesafe.akka" %% "akka-actor" % akkaVersion,
+    "com.typesafe.akka" %% "akka-stream" % akkaVersion,
+
+    $if(RabbitMQ.truthy)$
+        "com.neura" %% "common-infra-rabbitmq" % commonsInfraVersion,
+    $endif$
+    "de.heikoseeberger" %% "akka-http-json4s" % "1.20.1"
   )
 }
 
@@ -36,8 +49,10 @@ lazy val compileDependencies = {
 libraryDependencies ++= compileDependencies
 
 lazy val testDependencies = Seq(
-  "com.typesafe.akka" %% "akka-http-testkit" % "10.0.5",
-  "org.scalatest" %% "scalatest" % "3.0.1",
+  "com.typesafe.akka" %% "akka-http-testkit"    % akkaHttpVersion ,
+  "com.typesafe.akka" %% "akka-testkit"         % akkaVersion     ,
+  "com.typesafe.akka" %% "akka-stream-testkit"  % akkaVersion     ,
+  "org.scalatest"     %% "scalatest"            % "3.0.5"         ,
   "org.scalamock" %% "scalamock-scalatest-support" % "3.5.0"
-).map(_ % "test")
+).map(_ % Test)
 libraryDependencies ++= testDependencies

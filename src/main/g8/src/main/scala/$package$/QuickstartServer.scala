@@ -10,7 +10,7 @@ import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Route
 import akka.stream.ActorMaterializer
 
-import  $package$.service
+import  $package$.service._
 
 //#main-class
 object QuickstartServer extends App with UserRoutes {
